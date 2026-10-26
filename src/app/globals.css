@@ -1,0 +1,111 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --color-brand-50: #fdecea;
+  --color-brand-100: #f8cfcb;
+  --color-brand-300: #f06a5f;
+  --color-brand-600: #c11b18;
+  --color-brand-700: #a31613;
+  --color-brand-800: #7f110f;
+
+  --color-ink-50: #eef2f7;
+  --color-ink-100: #dde3ea;
+  --color-ink-200: #c9d3e0;
+  --color-ink-500: #5e6878;
+  --color-ink-600: #3b4658;
+  --color-ink-800: #1f3149;
+  --color-ink-900: #162336;
+  --color-ink-950: #0e1724;
+
+  --color-honey-100: #fcefd9;
+  --color-honey-400: #e9a23b;
+  --color-honey-700: #8a5a00;
+
+  --color-cream: #fbf8f4;
+  --color-sand: #f3ede5;
+  --color-line: #e7e1d9;
+  --color-charcoal: #2b2a29;
+
+  --color-success-50: #ecfdf3;
+  --color-success-600: #1e7a4c;
+  --color-warning-50: #fef3c7;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-error-50: #fef3f2;
+  --color-error-600: #b42318;
+  --color-info-50: #eaf2fc;
+  --color-info-600: #1f5fae;
+
+  --font-heading: var(--font-montserrat), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --radius-card: 1rem;
+  --radius-btn: 0.75rem;
+  --radius-xl2: 1.75rem;
+
+  --shadow-card: 0 1px 2px rgb(22 35 54 / 0.06), 0 4px 16px rgb(22 35 54 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(22 35 54 / 0.06), 0 12px 32px rgb(22 35 54 / 0.1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream font-sans text-ink-600 antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-ink-900;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-brand-300);
+    outline-offset: 2px;
+  }
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-4 md:px-6;
+}
+
+@utility eyebrow {
+  @apply text-sm font-semibold tracking-[0.14em] text-brand-600 uppercase;
+}
+
+.prose-article {
+  --tw-prose-body: var(--color-ink-600);
+  --tw-prose-headings: var(--color-ink-900);
+  --tw-prose-links: var(--color-brand-700);
+  --tw-prose-bold: var(--color-ink-900);
+  --tw-prose-bullets: var(--color-brand-600);
+  --tw-prose-counters: var(--color-ink-500);
+  --tw-prose-quotes: var(--color-ink-800);
+  --tw-prose-quote-borders: var(--color-brand-600);
+  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-td-borders: var(--color-line);
+}
+.prose-article h2,
+.prose-article h3 {
+  font-family: var(--font-heading);
+}
+.prose-article table {
+  display: block;
+  overflow-x: auto;
+}
+.prose-article thead th {
+  background: var(--color-ink-50);
+  padding: 0.6rem 0.75rem;
+}
+.prose-article tbody tr:nth-child(even) {
+  background: var(--color-cream);
+}
+.prose-article td {
+  padding: 0.6rem 0.75rem;
+}
