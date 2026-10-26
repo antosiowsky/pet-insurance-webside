@@ -13,8 +13,8 @@ export const site = {
   name: 'Anita Grzenia Ubezpieczenia',
   shortName: 'Anita Grzenia',
   tagline: 'Ubezpieczenia psa i kota – porównanie ofert i pomoc agentki',
-  /** Ustaw NEXT_PUBLIC_SITE_URL w Cloudflare Pages (np. https://twojadomena.pl). */
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://twojadomena.pl').replace(/\/$/, ''),
+  /** Ustaw NEXT_PUBLIC_SITE_URL w Cloudflare Pages (produkcja: https://zdrowyogonek.pl). */
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://zdrowyogonek.pl').replace(/\/$/, ''),
   /** Indeksowanie włączamy dopiero po podmianie placeholderów: NEXT_PUBLIC_ALLOW_INDEXING=true. */
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === 'true',
   locale: 'pl_PL',
@@ -39,7 +39,7 @@ export const site = {
 
   contact: {
     phone: ph('+48 512 241 906', 'numer z wizytówki Bezpieczny.pl – potwierdzić'),
-    email: ph('kontakt@twojadomena.pl', 'adres na docelowej domenie'),
+    email: ph('kontakt@zdrowyogonek.pl', 'adres na docelowej domenie – włączyć Email Routing w Cloudflare'),
     hours: ph('pn–pt 9:00–18:00', 'godziny kontaktu'),
     facebook: ph<string | null>(null, 'profil Facebook'),
     instagram: ph<string | null>(null, 'profil Instagram'),
