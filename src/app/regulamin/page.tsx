@@ -14,8 +14,9 @@ export default function TermsPage() {
     <LegalPage title="Regulamin serwisu" path="/regulamin" updated="23.10.2026">
       <h2>§1. Postanowienia ogólne</h2>
       <p>
-        Regulamin określa zasady korzystania z serwisu internetowego prowadzonego przez {site.agent.legalForm.value}, {site.agent.address.value} (dalej:
-        „Usługodawca”), zgodnie z ustawą o świadczeniu usług drogą elektroniczną.
+        Regulamin określa zasady korzystania z serwisu internetowego prowadzonego przez {site.agent.businessOwner.value} (biuro{' '}
+        {site.agent.officeName.value}), {site.agent.address.value}, NIP {site.agent.nip.value} (dalej: „Usługodawca”), przy udziale agentki{' '}
+        {site.agent.name.value} (nr KNF {site.agent.knfNumber.value}), zgodnie z ustawą o świadczeniu usług drogą elektroniczną.
       </p>
       <h2>§2. Usługi</h2>
       <ul>

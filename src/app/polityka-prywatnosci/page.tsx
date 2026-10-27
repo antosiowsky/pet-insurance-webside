@@ -14,8 +14,9 @@ export default function PrivacyPage() {
     <LegalPage title="Polityka prywatności" path="/polityka-prywatnosci" updated="23.10.2026">
       <h2>1. Administrator danych</h2>
       <p>
-        Administratorem Twoich danych osobowych jest {site.agent.legalForm.value}, {site.agent.address.value}, NIP {site.agent.nip.value} (dalej:
-        „Administrator”). Kontakt w sprawach danych: <a href={emailHref}>{site.contact.email.value}</a>.
+        Administratorem Twoich danych osobowych jest {site.agent.businessOwner.value} (biuro {site.agent.officeName.value}),{' '}
+        {site.agent.address.value}, NIP {site.agent.nip.value} (dalej: „Administrator”). Kontakt w sprawach danych:{' '}
+        <a href={emailHref}>{site.contact.email.value}</a> (agentka: {site.agent.name.value}).
       </p>
       <h2>2. Jakie dane i w jakim celu przetwarzam</h2>
       <ul>

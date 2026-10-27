@@ -44,7 +44,10 @@ export function Footer() {
                 {site.contact.email.value}
               </a>
             </li>
-            <li>{site.contact.hours.value}</li>
+            <li>Telefon: {site.contact.hours.value}</li>
+            <li>
+              {site.agent.officeName.value}, {site.agent.address.value}
+            </li>
             {site.contact.facebook.value && (
               <li>
                 <a href={site.contact.facebook.value} className="hover:text-white" rel="noopener" target="_blank">

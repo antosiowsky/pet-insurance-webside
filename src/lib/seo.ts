@@ -51,9 +51,15 @@ export const agencySchema = () => ({
   image: absoluteUrl('/images/og.png'),
   telephone: site.contact.phone.value,
   email: site.contact.email.value,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.agent.address.value,
+    addressCountry: 'PL',
+  },
   areaServed: 'PL',
   priceRange: 'bez dodatkowych opłat',
   founder: { '@id': `${site.url}/#agent` },
+  legalName: site.agent.businessOwner.value,
   ...(site.trust.googleRating.value && site.trust.googleReviewsCount.value
     ? { aggregateRating: { '@type': 'AggregateRating', ratingValue: site.trust.googleRating.value, reviewCount: site.trust.googleReviewsCount.value } }
     : {}),

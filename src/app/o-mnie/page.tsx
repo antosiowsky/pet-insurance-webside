@@ -41,7 +41,9 @@ export default function AboutPage() {
               {[
                 ['Status', 'agent ubezpieczeniowy'],
                 ['Numer w rejestrze KNF', site.agent.knfNumber.value],
-                ['Zakłady ubezpieczeń', site.agent.insurers.value.join(', ')],
+                ['Działalność gospodarcza', `${site.agent.businessOwner.value} – ${site.agent.officeName.value}`],
+                ['NIP', site.agent.nip.value],
+                ['Zakłady / partnerzy agencyjni', site.agent.insurers.value.join(', ')],
                 ['Partnerzy w porównywarce', offers.map((o) => o.shortName).join(', ')],
                 ['Doświadczenie', `${site.agent.yearsOfExperience.value} lat`],
               ].map(([k, v]) => (

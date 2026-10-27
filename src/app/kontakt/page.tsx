@@ -25,16 +25,22 @@ export default function ContactPage() {
             <h2 className="text-xl font-bold">Dane kontaktowe</h2>
             <dl className="mt-4 space-y-2 text-ink-600">
               <div>
-                <dt className="inline font-medium text-ink-800">Godziny: </dt>
+                <dt className="inline font-medium text-ink-800">Linia telefoniczna: </dt>
                 <dd className="inline">{site.contact.hours.value}</dd>
+              </div>
+              <div>
+                <dt className="inline font-medium text-ink-800">Godziny biura: </dt>
+                <dd className="inline">{site.contact.officeHours.value}</dd>
               </div>
               <div>
                 <dt className="inline font-medium text-ink-800">Obszar: </dt>
                 <dd className="inline">{site.agent.area.value}</dd>
               </div>
               <div>
-                <dt className="inline font-medium text-ink-800">Adres do korespondencji: </dt>
-                <dd className="inline">{site.agent.address.value}</dd>
+                <dt className="inline font-medium text-ink-800">Adres biura: </dt>
+                <dd className="inline">
+                  {site.agent.officeName.value}, {site.agent.address.value}
+                </dd>
               </div>
             </dl>
           </div>
