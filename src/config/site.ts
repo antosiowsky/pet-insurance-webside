@@ -57,7 +57,7 @@ export const site = {
 
   contact: {
     phone: ok('+48 512 241 906'),
-    email: ok('agrzenia@bezpieczny.pl'),
+    email: ok('kontakt@zdrowyogonek.pl'),
     /** Godziny dostępności na linii telefonicznej (wizytówka). */
     hours: ok('8:00–20:00'),
     /** Godziny biura w Rydułtowach. */
