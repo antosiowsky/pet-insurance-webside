@@ -10,9 +10,10 @@ export function EbookCover({ className = '' }: { className?: string }) {
         <p className="mt-2 font-heading text-xl leading-tight font-bold">{site.ebook.title.value}</p>
       </div>
       <ul className="mt-4 space-y-2 text-xs text-ink-600">
-        <li>✓ Checklista OWU – 12 pytań</li>
+        <li>✓ Udział własny i limity</li>
         <li>✓ Karencje i wyłączenia</li>
-        <li>✓ Koszty pierwszego roku z pupilem</li>
+        <li>✓ OC + zgłoszenie szkody</li>
+        <li>✓ Linki do OWU partnerów</li>
       </ul>
       <p className="mt-4 font-heading text-xs font-bold tracking-[0.18em] text-charcoal">ANITA GRZENIA</p>
     </div>
@@ -29,10 +30,16 @@ export function EbookCta() {
           <p className="text-sm font-semibold tracking-[0.14em] text-honey-400 uppercase">E-book za darmo</p>
           <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">Nie wiesz, na co zwrócić uwagę w polisie?</h2>
           <p className="mt-4 text-lg text-ink-200">
-            Pobierz poradnik z checklistą OWU. Wyślę go na Twój e-mail razem z krótkim newsletterem o zdrowiu pupila. Bez spamu – wypiszesz się
-            jednym kliknięciem.
+            {site.ebook.subtitle.value} Wyślę PDF na e-mail razem z krótkim newsletterem. Bez spamu – wypiszesz się jednym kliknięciem.
           </p>
           <EbookForm variant="dark" />
+          <p className="mt-4 text-sm text-ink-200">
+            Albo{' '}
+            <a href={site.ebook.pdfPath.value} className="font-semibold text-honey-400 underline underline-offset-2 hover:text-honey-100" download>
+              pobierz PDF od razu
+            </a>
+            .
+          </p>
         </div>
       </div>
     </section>

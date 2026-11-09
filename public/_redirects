@@ -1,5 +1,7 @@
 # Linki partnerskie agentki (Cloudflare Pages). Zmiana ID = zmiana tylko w tym pliku.
+# Barkibu: brak publicznego URL ze śledzeniem – redirect na stronę PL; prowizja/rabat przez kod w koszyku (site.discounts).
 /wycena/pzu         https://ubestrefa.pl/oferta/SW9TIJ                                   302
 /wycena/generali    https://moje.generali.pl/frontend/prime/www/nowa-oferta/pies/149521   302
 /wycena/bezpieczny  https://bezpieczny.pl/ubezpieczenie-psa/26341                        302
 /wycena/pethelp     https://pethelp.pl/ref/unl/11425397/P                                302
+/wycena/barkibu     https://www.barkibu.com/pl/                                          302

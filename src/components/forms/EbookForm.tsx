@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { site } from '@/config/site';
 import { CheckIcon } from '../icons';
 import { Turnstile } from './Turnstile';
 import { useFormSubmit } from './useFormSubmit';
@@ -12,10 +13,21 @@ export function EbookForm({ variant = 'light' }: { variant?: 'light' | 'dark' })
 
   if (state.status === 'ok') {
     return (
-      <p className="mt-7 flex items-start gap-3 rounded-card bg-success-50 p-4 font-medium text-success-600" aria-live="polite">
-        <CheckIcon className="mt-0.5 h-5 w-5 shrink-0" />
-        {state.message ?? 'Gotowe! Sprawdź skrzynkę i potwierdź zapis – e-book przyjdzie w kolejnej wiadomości.'}
-      </p>
+      <div className="mt-7 space-y-3 rounded-card bg-success-50 p-4 font-medium text-success-600" aria-live="polite">
+        <p className="flex items-start gap-3">
+          <CheckIcon className="mt-0.5 h-5 w-5 shrink-0" />
+          {state.message ?? 'Gotowe! Sprawdź skrzynkę i potwierdź zapis – e-book przyjdzie w kolejnej wiadomości.'}
+        </p>
+        {site.ebook.pdfReady.value && (
+          <p className="pl-8 text-sm font-normal">
+            Możesz też{' '}
+            <a href={site.ebook.pdfPath.value} className="font-semibold underline underline-offset-2" download>
+              pobrać PDF od razu
+            </a>
+            .
+          </p>
+        )}
+      </div>
     );
   }
 

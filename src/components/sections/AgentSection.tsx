@@ -11,9 +11,18 @@ export function AgentSection() {
           <p className="eyebrow">Kim jestem</p>
           <h2 className="mt-2 text-3xl font-bold">Cześć, jestem {site.agent.name.value.split(' ')[0]}</h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-600">„{site.agent.bio.value}”</p>
+          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-600">{site.agent.otherProducts.value}</p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm">
             <span className="rounded-full bg-white px-4 py-2 font-medium text-ink-800">Agentka – nr w rejestrze KNF: {site.agent.knfNumber.value}</span>
             <span className="rounded-full bg-white px-4 py-2 font-medium text-ink-800">{site.agent.area.value}</span>
+            <a
+              href={site.agent.website.value}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-white px-4 py-2 font-medium text-ink-800 underline decoration-ink-200 underline-offset-2 hover:text-brand-700"
+            >
+              anitagrzenia.pl
+            </a>
             <Link href="/o-mnie" className="rounded-full bg-ink-900 px-4 py-2 font-semibold text-white hover:bg-ink-800">
               Więcej o mnie →
             </Link>

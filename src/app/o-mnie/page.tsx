@@ -36,6 +36,17 @@ export default function AboutPage() {
             </ul>
           </div>
           <div>
+            <h2 className="text-3xl font-bold">Nie tylko ubezpieczenia pupili</h2>
+            <p className="mt-4 text-lg leading-relaxed">{site.agent.otherProducts.value}</p>
+            <p className="mt-4 text-ink-600">
+              Więcej o pełnej ofercie znajdziesz też na{' '}
+              <a href={site.agent.website.value} className="font-semibold text-brand-700 underline" target="_blank" rel="noopener noreferrer">
+                anitagrzenia.pl
+              </a>
+              .
+            </p>
+          </div>
+          <div>
             <h2 className="text-3xl font-bold">Uprawnienia i współpraca</h2>
             <dl className="mt-6 divide-y divide-line rounded-card border border-line bg-white">
               {[
@@ -43,6 +54,7 @@ export default function AboutPage() {
                 ['Numer w rejestrze KNF', site.agent.knfNumber.value],
                 ['Działalność gospodarcza', `${site.agent.businessOwner.value} – ${site.agent.officeName.value}`],
                 ['NIP', site.agent.nip.value],
+                ['Strona', site.agent.website.value.replace(/^https?:\/\//, '')],
                 ['Zakłady / partnerzy agencyjni', site.agent.insurers.value.join(', ')],
                 ['Partnerzy w porównywarce', offers.map((o) => o.shortName).join(', ')],
                 ['Doświadczenie', `${site.agent.yearsOfExperience.value} lat`],

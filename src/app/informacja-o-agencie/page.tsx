@@ -33,8 +33,8 @@ export default function AgentInfoPage() {
       <h2>W czyim imieniu działam</h2>
       <p>Wykonuję czynności agencyjne na rzecz następujących zakładów / partnerów: {a.insurers.value.join(', ')}.</p>
       <p>
-        Część ofert prezentowanych w serwisie (m.in. PZU / UBEstrefa, pakiety weterynaryjne PetHelp) jest dostępna za pośrednictwem linków partnerskich.
-        Zakup odbywa się bezpośrednio u danego podmiotu.
+        Część ofert prezentowanych w serwisie (m.in. PZU / UBEstrefa, pakiety weterynaryjne PetHelp, Barkibu) jest dostępna za pośrednictwem linków
+        partnerskich lub kodów rabatowych. Zakup odbywa się bezpośrednio u danego podmiotu.
       </p>
       <h2>Wynagrodzenie</h2>
       <p>

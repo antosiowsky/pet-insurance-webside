@@ -103,10 +103,9 @@ export default function HomePage() {
           <div>
             <p className="text-xs font-semibold tracking-[0.14em] text-ink-500 uppercase">Porównuję oferty partnerów</p>
             <div className="mt-4 flex flex-wrap items-center gap-x-10 gap-y-3 font-heading text-xl font-bold text-ink-500">
-              <span>PZU</span>
-              <span>Generali</span>
-              <span>Bezpieczny.pl</span>
-              <span>PetHelp</span>
+              {offers.map((o) => (
+                <span key={o.slug}>{o.shortName}</span>
+              ))}
             </div>
           </div>
           <dl className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:gap-10">

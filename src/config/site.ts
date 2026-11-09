@@ -44,6 +44,15 @@ export const site = {
       'krótkie bio w pierwszej osobie – do akceptacji klientki',
     ),
     area: ok('Cała Polska – online i telefonicznie'),
+    /** Osobna wizytówka / oferta poza zdrowyogonek.pl */
+    website: ok('https://anitagrzenia.pl'),
+    /**
+     * Informacja, że poza pupilami oferuje też inne ubezpieczenia.
+     * Pokazywane na /o-mnie i w sekcji „O mnie”.
+     */
+    otherProducts: ok(
+      'Poza ubezpieczeniami psa i kota pomagam też dobrać inne polisy – m.in. na dom i mieszkanie, OC, komunikacyjne oraz na życie. Jeśli potrzebujesz kompleksowej ochrony, napisz lub zadzwoń – ustalimy, co ma sens w Twojej sytuacji.',
+    ),
   },
 
   contact: {
@@ -69,26 +78,45 @@ export const site = {
     ),
   },
 
-  /** Ceny „od” na kartach ofert (zł/mies.) – orientacyjne, do potwierdzenia. */
+  /**
+   * Ceny „od” (zł/mies.) – tylko po potwierdzeniu u klientki.
+   * Barkibu: brak ceny „od” (indywidualna wycena) – nie wymyślamy kwoty.
+   */
   prices: {
     'pzu-dla-psa-i-kota': ph(32, 'orientacyjna cena od, zł/mies.'),
     'generali-pies': ph(30, 'orientacyjna cena od, zł/mies.'),
     'bezpieczny-pl-pies': ph(29, 'orientacyjna cena od, zł/mies.'),
     pethelp: ph(19, 'pakiet Podstawowy wg cennika PetHelp – do potwierdzenia'),
+    barkibu: ph(0, 'Barkibu – cena z kalkulatora; nie publikujemy „od” bez potwierdzenia (0 = ukryj na karcie)'),
   } as Record<string, Placeholder<number>>,
 
+  /**
+   * Kody rabatowe. Barkibu: `zdrowyogonek` – program partnerski oparty o kod (nie o osobny URL ze śledzeniem).
+   * Redirect `/wycena/barkibu` prowadzi na publiczną stronę barkibu.com/pl.
+   */
   discounts: {
     'pzu-dla-psa-i-kota': ph<string | null>(null, 'kod rabatowy, jeśli klientka ma'),
     'generali-pies': ph<string | null>(null),
     'bezpieczny-pl-pies': ph<string | null>(null),
     pethelp: ph<string | null>(null),
+    barkibu: ok('zdrowyogonek'),
   } as Record<string, Placeholder<string | null>>,
+
+  /** Meta partnerów bez osobistego linku ref – dokumentacja dla /placeholdery i maintainerów. */
+  partnerLinkNotes: {
+    barkibu: ok(
+      'Brak publicznego URL ze śledzeniem ID. Redirect → https://www.barkibu.com/pl/. Kod partnerski „zdrowyogonek” wpisuje się w polu „mam kod promocyjny” na końcu zakupu. Aby mieć panel afiliacyjny: affiliates.barkibu.com/pl',
+    ),
+  },
 
   legalReviewed: ph(false, 'polityka prywatności, cookies, regulamin, informacja o agencie – weryfikacja prawna'),
 
   ebook: {
-    title: ph('Jak wybrać ubezpieczenie dla psa i kota', 'tytuł e-booka'),
-    pdfReady: ph(false, 'czy PDF jest gotowy (wysyłka przez MailerLite)'),
+    title: ok('Na co uważać przy ubezpieczeniu psa i kota'),
+    subtitle: ok('Checklista OWU: udział własny, wyłączenia, karencje, suma, OC i zgłoszenie szkody'),
+    /** Publiczny PDF w /ebook/… – podpiąć też w automatyzacji MailerLite. */
+    pdfPath: ok('/ebook/na-co-uwazac-ubezpieczenie-psa-i-kota.pdf'),
+    pdfReady: ok(true),
   },
 
   integrations: {

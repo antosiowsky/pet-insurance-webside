@@ -42,6 +42,10 @@ export type Offer = {
   summary: string;
   claimSteps: string[];
   owu: string;
+  /** Jak działa link partnerski: śledzony URL vs publiczna strona + kod rabatowy. */
+  referralKind?: 'tracked-url' | 'promo-code';
+  /** Podpowiedź przy kodzie rabatu (gdzie wpisać). */
+  discountHint?: string;
   sortOrder: number;
 };
 
@@ -90,7 +94,7 @@ export const offers: Offer[] = [
       'Zgłaszasz szkodę online lub telefonicznie, dołączając fakturę i dokumentację leczenia.',
       'Ubezpieczyciel weryfikuje zgłoszenie i zwraca należną część kosztów na konto.',
     ],
-    owu: 'OWU UZ/183/2026 – numer i data do weryfikacji',
+    owu: 'OWU PZU Dla Psa i Kota – uchwała UZ/183/2026 z 28.07.2026',
     sortOrder: 1,
   },
   {
@@ -130,14 +134,14 @@ export const offers: Offer[] = [
       'Zgłaszasz szkodę przez formularz online ubezpieczyciela.',
       'Po weryfikacji otrzymujesz zwrot pomniejszony o udział własny.',
     ],
-    owu: 'OWU – numer i data do weryfikacji',
+    owu: 'OWU Generali Z myślą o Twoim Psie – obowiązuje od 21.05.2026',
     sortOrder: 2,
   },
   {
     slug: 'bezpieczny-pl-pies',
     partner: 'bezpieczny',
     redirectPath: '/wycena/bezpieczny',
-    insurer: 'do potwierdzenia w OWU',
+    insurer: 'Generali T.U. S.A.',
     distributor: 'Bezpieczny.pl',
     productName: 'Ubezpieczenie psa Bezpieczny.pl',
     shortName: 'Bezpieczny.pl',
@@ -175,7 +179,7 @@ export const offers: Offer[] = [
       'Zgłaszasz szkodę przez doradcę lub online.',
       'Otrzymujesz zwrot do wysokości sumy w wybranym wariancie.',
     ],
-    owu: 'OWU – ubezpieczyciel, numer i data do weryfikacji',
+    owu: 'OWU Generali Z myślą o Twoim Psie, bezpieczny.pl – obowiązuje od 13.02.2026',
     sortOrder: 3,
   },
   {
@@ -220,8 +224,62 @@ export const offers: Offer[] = [
       'Usługi z pakietu realizujesz bez dopłat (lub ze zniżką).',
       'Zakres i limity sprawdzasz w panelu klienta.',
     ],
-    owu: 'Regulamin pakietów i cennik – data do weryfikacji',
+    owu: 'Regulamin bonów PetHelp – obowiązuje od 02.09.2025',
     sortOrder: 4,
+  },
+  {
+    slug: 'barkibu',
+    partner: 'barkibu',
+    redirectPath: '/wycena/barkibu',
+    insurer: 'Nordic Guarantee Försäkringsaktiebolag',
+    distributor: 'Barkibu Germany GmbH',
+    productName: 'Barkibu – ubezpieczenie weterynaryjne',
+    shortName: 'Barkibu',
+    type: 'ubezpieczenie',
+    species: ['pies', 'kot'],
+    badge: 'Kod rabatowy',
+    purchase: ['online'],
+    minAge: '2 miesiące',
+    maxEntryAgeYears: 10,
+    maxTreatmentSum: 10000,
+    reimbursement: 'do 80% kosztów objętych ochroną',
+    waitingIllness: '28 dni',
+    waitingAccident: '5 dni',
+    liability: 'brak',
+    prevention: 'w-cenie',
+    death: 'brak',
+    legal: 'brak',
+    assistance: 'brak',
+    anyVet: true,
+    chipRequired: 'wg OWU / dokumentacji leczenia',
+    breeds: 'psy i koty w wieku uprawniającym do zakupu',
+    variants: [
+      { name: 'Z limitem rocznym', treatmentSum: 10000, note: 'zwrot do 80%, limit roczny 10 000 zł' },
+      { name: 'Bez limitu rocznego', note: 'zwrot do 80% bez limitu wydatków rocznych (wg wybranej polisy)' },
+    ],
+    highlights: [
+      'Zwrot do 80% kosztów leczenia w dowolnej lecznicy w Polsce',
+      'Pies i kot – zakup online w aplikacji / na stronie',
+      'Profilaktyka w ramach limitu (wg OWU)',
+    ],
+    watchOuts: [
+      'Karencja: 5 dni na wypadki, 28 dni na choroby',
+      'Udział własny 20% – zwrot dotyczy kosztów objętych ochroną',
+      'Link prowadzi na publiczną stronę Barkibu – prowizja wymaga kodu partnerskiego',
+    ],
+    forWhom:
+      'Dla opiekunów, którzy chcą cyfrowej polisy z zakupem online i zgłoszeniem zwrotu przez aplikację, bez przypisania do konkretnej sieci lecznic.',
+    summary:
+      'Ubezpieczenie kosztów leczenia weterynaryjnego psa lub kota: najpierw płacisz weterynarzowi, potem składasz fakturę i raport w aplikacji Barkibu. Warianty z limitem 10 000 zł rocznie albo bez limitu – szczegóły w OWU i wycenie.',
+    claimSteps: [
+      'Leczysz pupila w wybranej lecznicy i zbierasz fakturę oraz raport z konsultacji.',
+      'W aplikacji Barkibu składasz wniosek o zwrot (zwykle w terminie wskazanym w OWU).',
+      'Po weryfikacji otrzymujesz zwrot do 80% kosztów objętych ochroną, w ramach limitu wariantu.',
+    ],
+    owu: 'OWU Barkibu (zdrowie zwierząt) – wersja 06/2026; potwierdzić oficjalny URL u Barkibu',
+    referralKind: 'promo-code',
+    discountHint: 'Na ostatnim kroku zakupu kliknij „mam kod promocyjny” i wpisz kod. Sprawdź, czy rabat pojawił się w podsumowaniu przed płatnością.',
+    sortOrder: 5,
   },
 ];
 
@@ -238,7 +296,8 @@ export const availabilityLabel: Record<Availability, string> = {
 };
 
 export function priceFrom(o: Offer) {
-  return site.prices[o.slug]?.value ?? null;
+  const p = site.prices[o.slug]?.value ?? null;
+  return p && p > 0 ? p : null;
 }
 
 export function getOffer(slug: string) {

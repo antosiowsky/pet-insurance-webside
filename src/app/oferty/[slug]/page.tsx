@@ -154,6 +154,12 @@ export default async function OfferPage({ params }: { params: Promise<{ slug: st
                 od <span className="font-heading text-3xl font-bold text-ink-900">{price} zł</span> / mies.*
               </p>
             )}
+            {site.discounts[o.slug]?.value && (
+              <p className="mt-3 rounded-btn bg-honey-100 px-3 py-2 text-sm font-semibold text-honey-700">
+                Kod rabatowy: {site.discounts[o.slug].value}
+                {o.discountHint && <span className="mt-1 block text-xs font-normal opacity-90">{o.discountHint}</span>}
+              </p>
+            )}
             <a href={o.redirectPath} data-placement="oferta-boks" rel="sponsored nofollow noopener" target="_blank" className={`${btn.primary} mt-5 w-full`}>
               Oblicz składkę <ExternalIcon className="h-4 w-4" />
             </a>

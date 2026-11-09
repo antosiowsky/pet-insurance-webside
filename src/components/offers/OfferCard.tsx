@@ -38,7 +38,15 @@ export function OfferCard({ offer, placement, compact }: { offer: Offer; placeme
       {!compact && offer.maxTreatmentSum && (
         <p className="mt-1 text-sm text-ink-500">Leczenie do {formatPLN(offer.maxTreatmentSum)}</p>
       )}
-      {discount && <p className="mt-2 rounded-btn bg-honey-100 px-3 py-2 text-sm font-semibold text-honey-700">Kod rabatowy: {discount}</p>}
+      {discount && (
+        <div className="mt-2 rounded-btn bg-honey-100 px-3 py-2 text-sm text-honey-700">
+          <p className="font-semibold">Kod rabatowy: {discount}</p>
+          {offer.discountHint && <p className="mt-1 text-xs leading-snug font-normal opacity-90">{offer.discountHint}</p>}
+          {offer.referralKind === 'promo-code' && (
+            <p className="mt-1 text-xs leading-snug font-normal opacity-90">Link otwiera publiczną stronę partnera – to nie jest osobny URL ze śledzeniem ID.</p>
+          )}
+        </div>
+      )}
       <ul className="mt-5 space-y-2.5 text-[15px]">
         {offer.highlights.map((h) => (
           <CheckItem key={h}>{h}</CheckItem>
