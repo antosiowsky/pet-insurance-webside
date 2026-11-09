@@ -39,10 +39,7 @@ export default function EbookPage() {
                 Czytaj wersję online →
               </Link>
             </div>
-            <p className="mt-4 text-sm text-ink-200">
-              Po zapisie dostaniesz e-mail z prośbą o potwierdzenie adresu. PDF możesz też pobrać powyżej – warto podpiąć ten sam plik w
-              automatyzacji MailerLite.
-            </p>
+            <p className="mt-4 text-sm text-ink-200">Po wysłaniu formularza dostaniesz e-mail z linkiem do PDF (i załącznikiem, jeśli się uda). Możesz też pobrać plik powyżej.</p>
           </div>
           <EbookCover className="mx-auto scale-110" />
         </div>

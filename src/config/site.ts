@@ -114,7 +114,7 @@ export const site = {
   ebook: {
     title: ok('Na co uważać przy ubezpieczeniu psa i kota'),
     subtitle: ok('Checklista OWU: udział własny, wyłączenia, karencje, suma, OC i zgłoszenie szkody'),
-    /** Publiczny PDF w /ebook/… – podpiąć też w automatyzacji MailerLite. */
+    /** Publiczny PDF – Function `/api/ebook` wysyła link (+ załącznik) przez Resend. */
     pdfPath: ok('/ebook/na-co-uwazac-ubezpieczenie-psa-i-kota.pdf'),
     pdfReady: ok(true),
   },

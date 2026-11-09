@@ -20,7 +20,7 @@ npm run preview    # out/ + Pages Functions lokalnie (wrangler), http://localhos
 - `src/data/offers.ts` – oferty do porównywarki i stron `/oferty/<slug>`.
 - `content/blog/*.mdx` – wpisy na blogu (frontmatter: title, description, date, category, image).
 - `public/_redirects` – przekierowania `/wycena/<partner>` na linki partnerskie.
-- `functions/api/contact.ts`, `functions/api/ebook.ts` – formularze. Bez kluczy API działają w trybie testowym i wyraźnie informują, że zgłoszenie nie zostało wysłane.
+- `functions/api/contact.ts`, `functions/api/ebook.ts` – formularze przez Resend. E-book: PDF link + załącznik do odwiedzającego, opcjonalne powiadomienie na `CONTACT_TO_EMAIL`. Bez `RESEND_API_KEY` – tryb testowy z jawnym komunikatem.
 - `design/` – makieta HTML (wzorzec wyglądu, osobny projekt podglądu).
 
 ## Zmienne środowiskowe (Cloudflare Pages → Settings → Variables and secrets)

@@ -63,7 +63,7 @@ export function EbookForm({ variant = 'light' }: { variant?: 'light' | 'dark' })
       <label className={`mt-4 flex items-start gap-3 text-sm ${muted}`}>
         <input type="checkbox" name="consent" value="tak" required className="mt-0.5 h-4 w-4 accent-brand-600" />
         <span>
-          Chcę otrzymać e-book i newsletter o ubezpieczeniach i zdrowiu pupili. Zgodę mogę wycofać w każdej chwili.{' '}
+          Chcę otrzymać e-book na podany adres e-mail. Zgodę mogę wycofać, kontaktując się z agentką.{' '}
           <Link href="/polityka-prywatnosci" className={`underline underline-offset-2 ${dark ? 'hover:text-white' : 'font-semibold text-brand-700'}`}>
             Polityka prywatności
           </Link>

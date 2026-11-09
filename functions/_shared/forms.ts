@@ -2,6 +2,7 @@ export type Env = {
   RESEND_API_KEY?: string;
   CONTACT_TO_EMAIL?: string;
   CONTACT_FROM_EMAIL?: string;
+  /** Opcjonalne – e-book idzie przez Resend; MailerLite nie jest wymagany. */
   MAILERLITE_API_KEY?: string;
   MAILERLITE_GROUP_ID?: string;
   TURNSTILE_SECRET_KEY?: string;

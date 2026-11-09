@@ -30,7 +30,7 @@ export function EbookCta() {
           <p className="text-sm font-semibold tracking-[0.14em] text-honey-400 uppercase">E-book za darmo</p>
           <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">Nie wiesz, na co zwrócić uwagę w polisie?</h2>
           <p className="mt-4 text-lg text-ink-200">
-            {site.ebook.subtitle.value} Wyślę PDF na e-mail razem z krótkim newsletterem. Bez spamu – wypiszesz się jednym kliknięciem.
+            {site.ebook.subtitle.value} Podaj e-mail – wyślę PDF od razu na skrzynkę. Możesz też pobrać plik poniżej.
           </p>
           <EbookForm variant="dark" />
           <p className="mt-4 text-sm text-ink-200">
