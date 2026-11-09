@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PostCard } from '@/components/blog/PostCard';
 import { Faq } from '@/components/Faq';
-import { ArrowRightIcon, CheckIcon, PawIcon, ShieldIcon } from '@/components/icons';
+import { ArrowRightIcon, CheckIcon, ShieldIcon } from '@/components/icons';
 import { CommissionNote, OfferCard } from '@/components/offers/OfferCard';
 import { AgentSection } from '@/components/sections/AgentSection';
 import { ContactSection } from '@/components/sections/ContactSection';
@@ -12,20 +12,21 @@ import { Reviews } from '@/components/sections/Reviews';
 import { btn, SectionHeading } from '@/components/ui';
 import { site } from '@/config/site';
 import { homeFaq } from '@/data/content';
-import { offers, offersFor } from '@/data/offers';
+import { getOffer, offers } from '@/data/offers';
 import { getAllPosts } from '@/lib/blog';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: 'Ubezpieczenie psa i kota – porównanie ofert 2026 | Anita Grzenia',
   description:
-    'Porównaj ubezpieczenia dla psa i kota: PZU, Generali, Bezpieczny.pl i PetHelp. Zakres, ceny orientacyjne, karencje i pomoc agentki przy wyborze i szkodzie.',
+    'Porównaj ubezpieczenia dla psa i kota: PZU, Generali, Bezpieczny.pl, PetHelp i Barkibu. Zakres, ceny orientacyjne, karencje i pomoc agentki przy wyborze i szkodzie.',
   path: '/',
 });
 
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
-  const featured = offersFor('pies').filter((o) => o.type !== 'pakiet').slice(0, 3);
+  const featuredDog = getOffer('bezpieczny-pl-pies');
+  const featuredCat = getOffer('pzu-dla-psa-i-kota');
 
   return (
     <>
@@ -33,31 +34,30 @@ export default function HomePage() {
         <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-sand lg:block" aria-hidden />
         <div className="container-page relative grid items-center gap-10 pt-10 pb-14 lg:grid-cols-2 lg:gap-16 lg:pt-16 lg:pb-20">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-sm font-semibold text-brand-700">
-              <PawIcon className="h-4 w-4" /> Porównanie {offers.length} ofert dla psa i kota · 2026
-            </span>
-            <h1 className="mt-5 text-4xl leading-[1.1] font-bold md:text-5xl lg:text-[3.4rem]">
+            <h1 className="text-4xl leading-[1.1] font-bold md:text-5xl lg:text-[3.4rem]">
               Ubezpieczenie psa i&nbsp;kota – <span className="text-brand-600">porównaj oferty</span> i&nbsp;wybierz spokojnie
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-600">
-              Zestawiam polisy PZU, Generali, Bezpieczny.pl i&nbsp;pakiety PetHelp w&nbsp;jednym miejscu. Sprawdzisz zakres, ceny orientacyjne
-              i&nbsp;policzysz składkę u&nbsp;ubezpieczyciela – a&nbsp;jeśli masz pytania, po prostu zadzwoń.
+              Zestawiam polisy PZU, Generali, Bezpieczny.pl, Barkibu i&nbsp;pakiety PetHelp w&nbsp;jednym miejscu. Sprawdzisz zakres, ceny
+              orientacyjne i&nbsp;policzysz składkę u&nbsp;ubezpieczyciela – a&nbsp;jeśli masz pytania, po prostu zadzwoń.
             </p>
             <div className="mt-7 rounded-card border border-line bg-white p-4 shadow-card sm:p-5">
               <p className="text-sm font-semibold text-ink-900">Kogo chcesz ubezpieczyć?</p>
-              <div className="mt-3 flex flex-col gap-3 sm:flex-row">
-                <div className="grid flex-1 grid-cols-2 gap-2 rounded-btn bg-ink-50 p-1">
-                  <Link href="/porownywarka?gatunek=pies" className="rounded-[0.6rem] bg-white px-4 py-2.5 text-center text-sm font-semibold text-ink-900 shadow-sm ring-1 ring-ink-100">
-                    Psa
-                  </Link>
-                  <Link href="/porownywarka?gatunek=kot" className="rounded-[0.6rem] px-4 py-2.5 text-center text-sm font-semibold text-ink-600 hover:bg-white hover:text-ink-900">
-                    Kota
-                  </Link>
-                </div>
-                <Link href="/porownywarka" className={btn.primary}>
-                  Porównaj oferty <ArrowRightIcon className="h-5 w-5" />
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <Link href="/porownywarka?gatunek=pies" className={btn.primary}>
+                  Porównaj oferty dla psa <ArrowRightIcon className="h-5 w-5" />
+                </Link>
+                <Link href="/porownywarka?gatunek=kot" className={btn.secondary}>
+                  Porównaj oferty dla kota <ArrowRightIcon className="h-5 w-5" />
                 </Link>
               </div>
+              <p className="mt-3 text-sm text-ink-500">
+                Albo zobacz{' '}
+                <Link href="/porownywarka" className="font-semibold text-ink-800 underline underline-offset-2 hover:text-brand-700">
+                  wszystkie oferty naraz
+                </Link>
+                .
+              </p>
             </div>
             <ul className="mt-6 grid gap-3 text-[15px] text-ink-800 sm:grid-cols-3">
               {['Bez dodatkowych opłat', 'Zakup online w kilka minut', 'Pomoc przy szkodzie'].map((t) => (
@@ -138,25 +138,34 @@ export default function HomePage() {
       </section>
 
       <section id="porownanie" className="container-page py-16 lg:py-24">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <SectionHeading
-            eyebrow="Porównywarka"
-            title="Wybrane oferty ubezpieczenia psa"
-            lead="Ceny są orientacyjne. Dokładną składkę policzysz w kalkulatorze ubezpieczyciela – zajmie to kilka minut."
-          />
-          <div className="inline-flex rounded-btn bg-ink-50 p-1 text-sm font-semibold">
-            <Link href="/ubezpieczenie-psa" className="rounded-[0.6rem] bg-white px-5 py-2 text-ink-900 shadow-sm ring-1 ring-ink-100">
-              Pies
-            </Link>
-            <Link href="/ubezpieczenie-kota" className="rounded-[0.6rem] px-5 py-2 text-ink-600 hover:text-ink-900">
-              Kot
-            </Link>
-          </div>
-        </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((o) => (
-            <OfferCard key={o.slug} offer={o} placement="home-karta" />
-          ))}
+        <SectionHeading
+          eyebrow="Porównywarka"
+          title="Wybrane oferty dla psa i kota"
+          lead="Po jednej propozycji na start – dla psa Bezpieczny.pl, dla kota PZU. Pełną listę i filtry znajdziesz w porównywarce. Ceny są orientacyjne."
+        />
+        <div className="mt-10 grid gap-8 md:grid-cols-2">
+          {featuredDog && (
+            <div>
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <h3 className="font-heading text-xl font-bold text-ink-900">Dla psa</h3>
+                <Link href="/porownywarka?gatunek=pies" className="text-sm font-semibold text-brand-700 underline underline-offset-2">
+                  Więcej ofert dla psa →
+                </Link>
+              </div>
+              <OfferCard offer={featuredDog} placement="home-karta-pies" />
+            </div>
+          )}
+          {featuredCat && (
+            <div>
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <h3 className="font-heading text-xl font-bold text-ink-900">Dla kota</h3>
+                <Link href="/porownywarka?gatunek=kot" className="text-sm font-semibold text-brand-700 underline underline-offset-2">
+                  Więcej ofert dla kota →
+                </Link>
+              </div>
+              <OfferCard offer={featuredCat} placement="home-karta-kot" />
+            </div>
+          )}
         </div>
         <div className="mt-8 flex flex-col items-start gap-4 rounded-card bg-ink-50 p-5 md:flex-row md:items-center md:justify-between">
           <CommissionNote className="max-w-3xl text-ink-600" />
